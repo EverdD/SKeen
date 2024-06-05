@@ -36,9 +36,6 @@ To install and run the S-Keen application on your local machine, follow these st
 3. **Get Diagnosis:**
    The app will analyze the image and provide a detailed report of the detected skin condition.
 
-4. **Follow Health Tips:**
-   Review expert tips and recommendations to manage and improve your skin health.
-
 ## Contributing
 We welcome contributions from the community to help improve S-Keen. If you are interested in contributing, please follow these steps:
 
