@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textView: TextView
 
     private lateinit var txtLogout: TextView
-
     private lateinit var cvScanner: CardView
 
     private lateinit var viewPager: ViewPager2
