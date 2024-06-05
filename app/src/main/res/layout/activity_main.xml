@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,11 +13,11 @@
         android:id="@+id/tv_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/lato_bold"
-        android:rotation="43"
-        android:text="LOGOUT"
+        android:rotation="34"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +31,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/lato_bold"
         android:text="WELCOME"
-        android:textColor="@color/white"
+        android:textColor="@color/colorSecondaryPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_logout" />
 
@@ -43,7 +42,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/lato_regular"
         android:text="email@bangkit.com"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -89,39 +88,109 @@
 
     </androidx.cardview.widget.CardView>
 
+    <!-- New CardView for SkeenCare Button -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_viewPager"
-        android:layout_width="350dp"
-        android:layout_height="244dp"
+        android:id="@+id/cv_skeencare"
+        android:layout_width="57dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toEndOf="@+id/cv_scanner"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/iv_skeencare"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/skeencare"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/tv_skeencare_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="center"
+                android:text="Skeen Care"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_logout"
+        android:layout_width="57dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toEndOf="@+id/cv_skeencare"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/iv_logout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_logout"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/tv_logout_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="center"
+                android:text="Logout"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_banner"
+        android:layout_width="363dp"
+        android:layout_height="230dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_scanner"
         app:layout_constraintVertical_bias="0.084">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/iv_banner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="224dp" />
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:tabBackground="@android:color/transparent"
-                app:tabIndicatorColor="@color/colorThird"
-                app:tabIndicatorHeight="1dp"
-                app:tabRippleColor="@android:color/transparent" />
-
-        </LinearLayout>
+            android:layout_height="230dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/banner_skin1"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="283dp" />
 
     </androidx.cardview.widget.CardView>
 
