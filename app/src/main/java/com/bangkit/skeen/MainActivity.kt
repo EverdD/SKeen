@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.skeen.auth.LoginActivity
 import com.bangkit.skeen.classification.ScannerActivity
+import com.bangkit.skeen.skeencare.SkeenCare
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
@@ -24,8 +25,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var textView: TextView
 
-    private lateinit var txtLogout: TextView
+    private lateinit var cvLogout: CardView
     private lateinit var cvScanner: CardView
+    private lateinit var cvSkeenCare: CardView
 
     private lateinit var viewPager: ViewPager2
 
@@ -36,9 +38,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         auth = FirebaseAuth.getInstance()
-        txtLogout = findViewById(R.id.tv_logout)
+        cvLogout = findViewById(R.id.cv_logout)
         textView = findViewById(R.id.tv_user)
         cvScanner = findViewById(R.id.cv_scanner)
+        cvSkeenCare = findViewById(R.id.cv_skeencare)
         viewPager = findViewById(R.id.viewPager)
         tabLayout = findViewById(R.id.tabLayout)
 
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             textView.text = user.email
         }
 
-        txtLogout.setOnClickListener {
+        cvLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(intent)
@@ -64,9 +67,15 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+        cvSkeenCare.setOnClickListener {
+            val intent = Intent(applicationContext, SkeenCare::class.java)
+            startActivity(intent)
+        }
+
         val imageList = listOf(
             R.drawable.banner_skin1,
             R.drawable.banner_skin2
+
         )
         val adapter = ImagePagerAdapter(imageList)
         viewPager.adapter = adapter

@@ -10,30 +10,17 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/lato_bold"
-        android:rotation="34"
-        android:text=""
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_bold"
         android:text="WELCOME"
-        android:textColor="@color/colorSecondaryPrimary"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_logout" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_user"
@@ -42,7 +29,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/lato_regular"
         android:text="email@bangkit.com"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -81,6 +68,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:gravity="center"
                 android:text="Skin Scanner"
+
                 android:textColor="@color/black"
                 android:textSize="10sp" />
 
@@ -88,7 +76,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- New CardView for SkeenCare Button -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_skeencare"
         android:layout_width="57dp"
