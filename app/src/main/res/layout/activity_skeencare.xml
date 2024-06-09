@@ -37,13 +37,13 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:text="SkeenCare"
+        android:layout_marginStart="24dp"
         android:fontFamily="@font/lato_bold"
-        android:textSize="18sp"
+        android:text="Penyakit Kulit"
         android:textColor="@color/white"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageBack"
         app:layout_constraintStart_toEndOf="@+id/imageBack"
         app:layout_constraintTop_toTopOf="@+id/imageBack"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,7 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
         var confidence: Float = 0F
     ) {
         override fun toString(): String {
-            return "Title = $title, Confidence = $confidence"
+            return "$title\nConfidence = ${"%.2f".format(confidence * 100)}%"
         }
     }
 

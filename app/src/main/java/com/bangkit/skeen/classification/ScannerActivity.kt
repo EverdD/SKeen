@@ -52,6 +52,7 @@ class ScannerActivity : AppCompatActivity() {
         classifier = Classifier(assets, modelPath, labelPath, inputSize)
     }
 
+
     private fun initViews() {
         photoImageView = findViewById(R.id.mPhotoImageView)
         cameraButton = findViewById(R.id.mCameraButton)
@@ -87,7 +88,7 @@ class ScannerActivity : AppCompatActivity() {
 
         detectButton.setOnClickListener {
             val results = classifier.recognizeImage(bitmap).firstOrNull()
-            resultTextView.text = "${results?.title}\nConfidence: ${results?.confidence}"
+            resultTextView.text = results?.toString() ?: "No result"
         }
     }
 
