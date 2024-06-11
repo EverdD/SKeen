@@ -52,7 +52,6 @@ class ScannerActivity : AppCompatActivity() {
         classifier = Classifier(assets, modelPath, labelPath, inputSize)
     }
 
-
     private fun initViews() {
         photoImageView = findViewById(R.id.mPhotoImageView)
         cameraButton = findViewById(R.id.mCameraButton)

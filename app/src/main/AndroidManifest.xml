@@ -25,6 +25,9 @@
             android:name=".skeencare.SkeenCare"
             android:exported="false" />
         <activity
+            android:name=".skeencare.DetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".auth.LoginActivity"
             android:exported="true">
             <intent-filter>

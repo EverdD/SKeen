@@ -76,7 +76,6 @@ class MainActivity : AppCompatActivity() {
             R.drawable.banner_skin1,
             R.drawable.banner_skin2,
             R.drawable.banner_skin3,
-            R.drawable.banner_skin4
 
         )
         val adapter = ImagePagerAdapter(imageList)

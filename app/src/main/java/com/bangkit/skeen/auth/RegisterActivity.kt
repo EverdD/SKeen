@@ -9,10 +9,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bangkit.skeen.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -66,7 +63,8 @@ class RegisterActivity : AppCompatActivity() {
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 progressBar.visibility = View.GONE
                 if (task.isSuccessful) {
-                    Toast.makeText(this@RegisterActivity, "Account created.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Account created.", Toast.LENGTH_SHORT)
+                        .show()
                     // Sign out the user
                     mAuth.signOut()
                     // Redirect to LoginActivity
@@ -74,7 +72,9 @@ class RegisterActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@RegisterActivity, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@RegisterActivity, "Authentication failed.", Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

@@ -9,10 +9,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bangkit.skeen.MainActivity
 import com.bangkit.skeen.R
 import com.google.firebase.auth.FirebaseAuth
@@ -77,12 +74,14 @@ class LoginActivity : AppCompatActivity() {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 progressBar.visibility = View.GONE
                 if (task.isSuccessful) {
-                    Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT)
+                        .show()
                     val intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@LoginActivity, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Authentication failed.", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }

@@ -1,6 +1,6 @@
 package com.bangkit.skeen.skeencare
 
-class Disease (
+class Disease(
     val name: String,
     val description: String,
     val photo: Int,

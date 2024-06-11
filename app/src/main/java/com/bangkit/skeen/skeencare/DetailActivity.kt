@@ -1,9 +1,10 @@
 package com.bangkit.skeen.skeencare
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.skeen.R
 
 class DetailActivity : AppCompatActivity() {
@@ -23,6 +24,11 @@ class DetailActivity : AppCompatActivity() {
         val diseasePhoto = intent.getIntExtra("DISEASE_PHOTO", 0)
         val diseaseCauses = intent.getStringExtra("DISEASE_CAUSES")
         val diseasePrevention = intent.getStringExtra("DISEASE_PREVENTION")
+
+        findViewById<ImageView>(R.id.imageBack).setOnClickListener {
+            startActivity(Intent(this, SkeenCare::class.java))
+            finish()
+        }
 
         nameTextView.text = diseaseName
         descriptionTextView.text = diseaseDescription

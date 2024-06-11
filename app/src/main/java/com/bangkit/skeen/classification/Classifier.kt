@@ -26,9 +26,7 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
     }
 
     data class Recognition(
-        var id: String = "",
-        var title: String = "",
-        var confidence: Float = 0F
+        var id: String = "", var title: String = "", var confidence: Float = 0F
     ) {
         override fun toString(): String {
             return "$title\nConfidence = ${"%.2f".format(confidence * 100)}%"
@@ -75,7 +73,10 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
     }
 
     private fun getSortedResult(labelProbArray: Array<FloatArray>): List<Recognition> {
-        Log.d("Classifier", "List Size:(${labelProbArray.size}, ${labelProbArray[0].size}, ${labelList.size})")
+        Log.d(
+            "Classifier",
+            "List Size:(${labelProbArray.size}, ${labelProbArray[0].size}, ${labelList.size})"
+        )
 
         val pq = PriorityQueue(MAX_RESULTS,
             Comparator<Recognition> { (_, _, confidence1), (_, _, confidence2) ->
@@ -85,7 +86,11 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
         for (i in labelList.indices) {
             val confidence = labelProbArray[0][i]
             if (confidence >= THRESHOLD) {
-                pq.add(Recognition("$i", if (labelList.size > i) labelList[i] else "Unknown", confidence))
+                pq.add(
+                    Recognition(
+                        "$i", if (labelList.size > i) labelList[i] else "Unknown", confidence
+                    )
+                )
             }
         }
         Log.d("Classifier", "pqsize:(${pq.size})")
