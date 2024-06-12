@@ -18,6 +18,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"https://firebaseauthapi-dot-fir-capstone-e636b.et.r.appspot.com/api/\"")
+
     }
 
     buildTypes {
@@ -39,6 +42,8 @@ android {
     buildFeatures {
         mlModelBinding = true
         viewBinding = true
+        buildConfig = true
+
     }
 }
 
@@ -50,7 +55,11 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.play.services.cast.framework)
     testImplementation(libs.junit)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.logging.interceptor)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.tensorflow.lite.support)

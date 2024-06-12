@@ -1,8 +1,10 @@
 package com.bangkit.skeen.auth
 
+import SessionManager
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -12,37 +14,27 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.skeen.MainActivity
 import com.bangkit.skeen.R
-import com.google.firebase.auth.FirebaseAuth
+import com.bangkit.skeen.api.ApiConfig
+import com.bangkit.skeen.api.AuthResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var editTextEmail: EditText
-
     private lateinit var editTextPassword: EditText
-
     private lateinit var buttonLog: Button
-
     private lateinit var progressBar: ProgressBar
-
     private lateinit var textView: TextView
-
-    private lateinit var mAuth: FirebaseAuth
-
-    public override fun onStart() {
-        super.onStart()
-        val currentUser = mAuth.currentUser
-        if (currentUser != null) {
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        mAuth = FirebaseAuth.getInstance()
+        sessionManager = SessionManager(this)
+
         editTextEmail = findViewById(R.id.email)
         editTextPassword = findViewById(R.id.password)
         buttonLog = findViewById(R.id.btn_login)
@@ -71,19 +63,43 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                progressBar.visibility = View.GONE
-                if (task.isSuccessful) {
-                    Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT)
-                        .show()
-                    val intent = Intent(applicationContext, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this@LoginActivity, "Authentication failed.", Toast.LENGTH_SHORT)
-                        .show()
+            val apiService = ApiConfig.getApiService()
+            val loginRequest = LoginRequest(email, password)
+            val call = apiService.postLogin(loginRequest)
+            call.enqueue(object : Callback<AuthResponse> {
+                override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                    progressBar.visibility = View.GONE
+                    if (response.isSuccessful) {
+                        val authResponse = response.body()
+                        Log.d("Auth Response", authResponse.toString())
+                        if (authResponse != null && !authResponse.error) {
+                            Log.d("LoginActivity", "Token received: ${authResponse.userCredential.user.stsTokenManager.accessToken}")
+                            Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT).show()
+
+                            // Save email and token
+                            sessionManager.saveUserEmail(email)
+                            sessionManager.saveAuthToken(authResponse.userCredential.user.stsTokenManager.accessToken)
+
+                            navigateToMainActivity()
+                        } else {
+                            Toast.makeText(this@LoginActivity, authResponse?.message ?: "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Authentication failed. Error code: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
+
+                override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                    progressBar.visibility = View.GONE
+                    Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

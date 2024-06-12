@@ -11,27 +11,25 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.skeen.R
-import com.google.firebase.auth.FirebaseAuth
+import com.bangkit.skeen.api.ApiConfig
+import com.bangkit.skeen.api.PostResponse
+import com.bangkit.skeen.auth.RegisterRequest
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var editTextEmail: EditText
-
     private lateinit var editTextPassword: EditText
-
     private lateinit var buttonReg: Button
-
-    private lateinit var mAuth: FirebaseAuth
-
     private lateinit var progressBar: ProgressBar
-
     private lateinit var textView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        mAuth = FirebaseAuth.getInstance()
         editTextEmail = findViewById(R.id.email)
         editTextPassword = findViewById(R.id.password)
         buttonReg = findViewById(R.id.btn_register)
@@ -60,23 +58,32 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                progressBar.visibility = View.GONE
-                if (task.isSuccessful) {
-                    Toast.makeText(this@RegisterActivity, "Account created.", Toast.LENGTH_SHORT)
-                        .show()
-                    // Sign out the user
-                    mAuth.signOut()
-                    // Redirect to LoginActivity
-                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(
-                        this@RegisterActivity, "Authentication failed.", Toast.LENGTH_SHORT
-                    ).show()
+            val apiService = ApiConfig.getApiService()
+            val registerRequest = RegisterRequest(email, password)
+            val call = apiService.postRegister(registerRequest)
+            call.enqueue(object : Callback<PostResponse> {
+                override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
+                    progressBar.visibility = View.GONE
+                    if (response.isSuccessful) {
+                        val postResponse = response.body()
+                        if (postResponse != null && !postResponse.error) {
+                            Toast.makeText(this@RegisterActivity, "Account created.", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this@RegisterActivity, postResponse?.message ?: "Registration failed.", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this@RegisterActivity, "Registration failed. Error code: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
+
+                override fun onFailure(call: Call<PostResponse>, t: Throwable) {
+                    progressBar.visibility = View.GONE
+                    Toast.makeText(this@RegisterActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 }
