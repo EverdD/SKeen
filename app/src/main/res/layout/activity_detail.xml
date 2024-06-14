@@ -3,20 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:scrollbars="none"
+    android:background="@drawable/background_dashboard">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:padding="16dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/headerLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <ImageView
                 android:id="@+id/imageBack"
@@ -24,7 +28,7 @@
                 android:layout_height="32dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_back"
-                android:tint="@color/black" />
+                app:tint="@color/colorThird" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -33,72 +37,96 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="Detail Penyakit"
-                android:textColor="@color/black"
+                android:textColor="@color/colorThird"
                 android:textSize="25sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/imgDiseasePhoto"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tvDiseaseName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textColor="@android:color/black"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/colorThird"
             android:textSize="24sp"
-            android:fontFamily="@font/lato_bold" />
+            app:layout_constraintTop_toBottomOf="@id/imgDiseasePhoto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tvDiseaseDescription"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/lato_regular"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:justificationMode="inter_word"
+            android:textColor="@color/colorSecondaryPrimary"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tvDiseaseName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tvDiseaseCausesLabel"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/lato_bold"
             android:text="Penyebab"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorThird"
             android:textSize="18sp"
-            android:fontFamily="@font/lato_bold" />
+            app:layout_constraintTop_toBottomOf="@id/tvDiseaseDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tvDiseaseCauses"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/lato_regular"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:justificationMode="inter_word"
+            android:textColor="@color/colorSecondaryPrimary"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tvDiseaseCausesLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tvDiseasePreventionLabel"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/lato_bold"
             android:text="Pencegahan"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorThird"
             android:textSize="18sp"
-            android:fontFamily="@font/lato_bold" />
+            app:layout_constraintTop_toBottomOf="@id/tvDiseaseCauses"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tvDiseasePrevention"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/lato_regular"
+            android:justificationMode="inter_word"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tvDiseasePreventionLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

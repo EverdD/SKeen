@@ -17,7 +17,7 @@
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
+        app:tint="@color/colorThird" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -38,7 +38,7 @@
         android:layout_marginStart="24dp"
         android:fontFamily="@font/lato_bold"
         android:text="Daftar Penyakit Kulit"
-        android:textColor="@color/white"
+        android:textColor="@color/colorSecondaryPrimary"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageBack"
         app:layout_constraintStart_toEndOf="@+id/imageBack"
