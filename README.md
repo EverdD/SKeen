@@ -8,7 +8,7 @@ S-Keen is an innovative Android application designed to provide accurate and rel
 ## Features
 - **Skin Disease Detection:** Utilize advanced machine learning models to identify various skin diseases from images.
 - **User-Friendly Interface:** Simple and intuitive UI/UX design to make the app accessible to everyone.
-- **Detailed Reports:** Receive comprehensive information about detected skin conditions.
+- **Detailed Report:** Receive a comprehensive article providing information about the identified skin disease
 
 ## Installation
 To install and run the S-Keen application on your local machine, follow these steps:
