@@ -1,4 +1,4 @@
-<img src="Cover.png" alt="SKeen">
+mg src="Cover.png" alt="SKeen">
 
 <h1 align="center">SKeen</h1>
 
@@ -9,6 +9,13 @@ S-Keen is an innovative Android application designed to provide accurate and rel
 - **Skin Disease Detection:** Utilize advanced machine learning models to identify various skin diseases from images.
 - **User-Friendly Interface:** Simple and intuitive UI/UX design to make the app accessible to everyone.
 - **Detailed Report:** Receive a comprehensive article providing information about the identified skin disease
+
+## API Documentation
+For detailed API documentation, refer to our [Postman Collection](https://documenter.getpostman.com/view/25236498/2sA3XV7yuW). This collection includes sample requests for the following endpoints:
+
+- **Register User**
+- **Login User**
+- **Logout User**Use
 
 ## Installation
 To install and run the S-Keen application on your local machine, follow these steps:
@@ -61,3 +68,7 @@ We welcome contributions from the community to help improve S-Keen. If you are i
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+Here's an improved version of the README.md file for the S-Keen project with better formatting and clarity:
+
+---
