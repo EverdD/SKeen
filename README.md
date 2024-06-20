@@ -1,4 +1,4 @@
-mg src="Cover.png" alt="SKeen">
+<img src="Cover.png" alt="SKeen">
 
 <h1 align="center">SKeen</h1>
 
@@ -68,7 +68,4 @@ We welcome contributions from the community to help improve S-Keen. If you are i
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-Here's an improved version of the README.md file for the S-Keen project with better formatting and clarity:
-
----
+___
